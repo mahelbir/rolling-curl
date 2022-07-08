@@ -18,8 +18,7 @@ namespace RollingCurl;
 /**
  * Class that represent a single curl request
  */
-class Request
-{
+class Request {
     /**
      * @var string
      */
@@ -60,218 +59,246 @@ class Request
      * @var int
      */
     private $responseErrno;
+    /**
+     * @var string
+     */
+    private $responseHeaders;
+
+    /**
+     * @var array
+     */
+    public $identifierParams;
 
     /**
      * @param string $url
      * @param string $method
+     *
      * @return \RollingCurl\Request
      */
-    function __construct($url, $method="GET")
-    {
+    function __construct($url, $method = "GET", $identifierParams = NULL) {
         $this->setUrl($url);
         $this->setMethod($method);
+        $this->identifierParams = $identifierParams;
     }
 
     /**
      * You may wish to store some "extra" info with this request, you can put any of that here.
      *
      * @param mixed $extraInfo
+     *
      * @return \RollingCurl\Request
      */
-    public function setExtraInfo($extraInfo)
-    {
+    public function setExtraInfo($extraInfo) {
         $this->extraInfo = $extraInfo;
+
         return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getExtraInfo()
-    {
+    public function getExtraInfo() {
         return $this->extraInfo;
     }
 
     /**
      * @param array $headers
+     *
      * @return \RollingCurl\Request
      */
-    public function setHeaders($headers)
-    {
+    public function setHeaders($headers) {
         $this->headers = $headers;
+
         return $this;
     }
 
     /**
      * @return array
      */
-    public function getHeaders()
-    {
+    public function getHeaders() {
         return $this->headers;
     }
 
     /**
      * @param string $method
+     *
      * @return \RollingCurl\Request
      */
-    public function setMethod($method)
-    {
+    public function setMethod($method) {
         $this->method = $method;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getMethod()
-    {
+    public function getMethod() {
         return $this->method;
     }
 
     /**
      * @param array $options
+     *
      * @throws \InvalidArgumentException
      * @return \RollingCurl\Request
      */
-    public function setOptions($options)
-    {
-        if (!is_array($options)) {
+    public function setOptions($options) {
+        if(!is_array($options)) {
             throw new \InvalidArgumentException("options must be an array");
         }
         $this->options = $options;
+
         return $this;
     }
 
     /**
      * @param array $options
+     *
      * @throws \InvalidArgumentException
      * @return \RollingCurl\Request
      */
-    public function addOptions($options)
-    {
-        if (!is_array($options)) {
+    public function addOptions($options) {
+        if(!is_array($options)) {
             throw new \InvalidArgumentException("options must be an array");
         }
         $this->options = $options + $this->options;
+
         return $this;
     }
 
     /**
      * @return array
      */
-    public function getOptions()
-    {
+    public function getOptions() {
         return $this->options;
     }
 
     /**
      * @param string $postData
+     *
      * @return \RollingCurl\Request
      */
-    public function setPostData($postData)
-    {
+    public function setPostData($postData) {
         $this->postData = $postData;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getPostData()
-    {
+    public function getPostData() {
         return $this->postData;
     }
 
     /**
      * @param int $responseErrno
+     *
      * @return \RollingCurl\Request
      */
-    public function setResponseErrno($responseErrno)
-    {
+    public function setResponseErrno($responseErrno) {
         $this->responseErrno = $responseErrno;
+
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getResponseErrno()
-    {
+    public function getResponseErrno() {
         return $this->responseErrno;
     }
 
     /**
      * @param string $responseError
+     *
      * @return \RollingCurl\Request
      */
-    public function setResponseError($responseError)
-    {
+    public function setResponseError($responseError) {
         $this->responseError = $responseError;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getResponseError()
-    {
+    public function getResponseError() {
         return $this->responseError;
     }
 
     /**
      * @param array $responseInfo
+     *
      * @return \RollingCurl\Request
      */
-    public function setResponseInfo($responseInfo)
-    {
+    public function setResponseInfo($responseInfo) {
         $this->responseInfo = $responseInfo;
+
         return $this;
     }
 
     /**
      * @return array
      */
-    public function getResponseInfo()
-    {
+    public function getResponseInfo() {
         return $this->responseInfo;
     }
 
     /**
-     * @param string $responseText
+     * @param array $headers
+     *
      * @return \RollingCurl\Request
      */
-    public function setResponseText($responseText)
-    {
+    public function setResponseHeaders($headers) {
+        $this->responseHeaders = $headers;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getResponseHeaders() {
+        return $this->responseHeaders;
+    }
+
+    /**
+     * @param string $responseText
+     *
+     * @return \RollingCurl\Request
+     */
+    public function setResponseText($responseText) {
         $this->responseText = $responseText;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getResponseText()
-    {
+    public function getResponseText() {
         return $this->responseText;
     }
 
     /**
      * @param string $url
+     *
      * @return \RollingCurl\Request
      */
-    public function setUrl($url)
-    {
+    public function setUrl($url) {
         $this->url = $url;
+
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
-
 
 
 }
